@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'books',
+    'customer',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -56,6 +57,9 @@ TEMPLATE_DIRS = {
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(BASE_DIR, 'django_app/templates'),
+    os.path.join(BASE_DIR, 'books/templates'),
+    os.path.join(BASE_DIR, 'contact/templates'),
+    os.path.join(BASE_DIR, 'customer/templates'),
 }
 
 WSGI_APPLICATION = 'django_app.wsgi.application'
