@@ -13,14 +13,12 @@
 		    	<p class="error">Sorry, that's not a valid username or password</p>
 		  	{% endif %}
 
-		  	<form action="/customer/loginPost" method="post">
-		    	<label for="username">User name:</label>
-		    	<input type="text" name="username" value="" id="username">
-		    	<label for="password">Password:</label>
-		    	<input type="password" name="password" value="" id="password">
-
-		    	<input type="submit" value="login" />
-		    	<input type="hidden" name="next" value="{{ next|escape }}" />
+		  	<form action="/customer/loginPost/" method="post">
+			  	<table>
+			  		{{ form.as_table }}
+			  	</table>
+			  	{% csrf_token %}
+			  	<input type="submit" value="Login">
 		  	</form>
 		</div>
 

@@ -31,10 +31,10 @@ class RegisterForm(forms.ModelForm):
  #        widget = forms.TextInput(), 
  #        required = True
  #    )
-	# password = forms.CharField(
-	# 	label = "Password", 
-	# 	widget = forms.PasswordInput(render_value=False)
-	# )
+	password = forms.CharField(
+		label = "Password", 
+		widget = forms.PasswordInput(render_value=False)
+	)
 	password_confirm = forms.CharField(
 		label = "Password (again)", 
 		widget = forms.PasswordInput(render_value=False)
@@ -72,7 +72,32 @@ class RegisterForm(forms.ModelForm):
 				raise forms.ValidationError('You must type the same password.')
 		return self.cleaned_data
 
+class LoginForm(forms.Form):
+	username = forms.CharField(
+        label = "Username",
+        widget = forms.TextInput(),
+        required = True
+    )
+	password = forms.CharField(
+		label = "Password", 
+		widget = forms.PasswordInput(render_value=False),
+		required = True
+	)
+	remember = forms.BooleanField(
+		label = "Remember Me",
+		required = False
+	)
 
-
-
+	# def clean(self):
+	# 	if self._errors:
+	# 		return
+	# 	user = auth.authenticate(username=self.cleaned_data['username'], password=self.cleaned_data['password'])
+	# 	if user is not None:
+	# 		if user.is_active:
+	# 			self.user = user
+	# 		else:
+	# 			raise forms.ValidationError('The user is not been activated.')
+	# 	else:
+	# 		raise forms.ValidationError('Invalid username and password')
+	# 	return self.cleaned_data
 

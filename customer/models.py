@@ -1,5 +1,7 @@
 from django.db import models
 from django.forms import ModelForm
+from django.contrib.auth.hashers import make_password
+
 import datetime
 
 # Create your models here.
@@ -19,12 +21,15 @@ class UserEntity(models.Model):
 	zipcode = models.CharField(max_length=255, default='')
 	email = models.EmailField(max_length=255, default='')
 	username = models.CharField(max_length=30, default='')
-	password = models.CharField(max_length=30, default='')
+	password = models.CharField(max_length=255, default='')
 	phone = models.CharField(max_length=20, default='')
 	image = models.CharField(max_length=255, default='')
 	create_time = models.DateTimeField(default=datetime.datetime.now())
 	update_time = models.DateTimeField(default=datetime.datetime.now())
 	is_active = models.BooleanField(default='1')
 	recent_ip = models.CharField(max_length=15, default='')
+
+	def hash_password(self, raw_password):
+		self.password = make_password(raw_password)
 	
 			
